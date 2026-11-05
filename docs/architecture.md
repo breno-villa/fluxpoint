@@ -52,9 +52,9 @@ The **right half is the central** because it carries the TrackPoint, which ZMK r
 
 | Mode | Between halves | To host | Central | v1 |
 |---|---|---|---|---|
-| 1 | BLE split | USB HID | Left half | Yes |
-| 2 | BLE split | BLE HID | Left half | Yes |
-| 3 | BLE split | BLE HID multi-host | Left half | Yes |
+| 1 | BLE split | USB HID | Right half | Yes |
+| 2 | BLE split | BLE HID | Right half | Yes |
+| 3 | BLE split | BLE HID multi-host | Right half | Yes |
 | 4 | BLE split | USB dongle | Dongle | No, Phase 5 |
 | 5 | Wired UART | USB/BLE | Wired central | No, experimental |
 
