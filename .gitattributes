@@ -1,0 +1,23 @@
+* text=auto eol=lf
+
+# KiCad: arquivos texto com estrutura própria
+*.kicad_pcb text eol=lf
+*.kicad_sch text eol=lf
+*.kicad_pro text eol=lf
+*.kicad_sym text eol=lf
+*.kicad_mod text eol=lf
+*.kicad_wks text eol=lf
+
+# Binários / artefatos
+*.step -text
+*.stp -text
+*.stl -text
+*.3mf -text
+*.png -text
+*.jpg -text
+*.jpeg -text
+*.pdf -text
+*.uf2 -text
+*.hex -text
+*.bin -text
+*.elf -text

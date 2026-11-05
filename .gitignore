@@ -1,0 +1,48 @@
+# Sistema operacional / editores
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Zephyr / ZMK
+build/
+.west/
+# Dependências externas de um workspace west na raiz
+/zephyr/
+/modules/
+*.uf2
+*.hex
+*.bin
+*.elf
+*.map
+*.dts.pre.tmp
+*.lst
+*.su
+
+# KiCad
+*-backups/
+*.bak
+*.kicad_prl
+*.lck
+fp-info-cache
+_autosave-*
+
+# CAD / artefatos gerados
+*.stl
+*.3mf
+*.gcode
+
+# Segredos e configurações locais
+.env
+.env.*
+*.pem
+secrets/
