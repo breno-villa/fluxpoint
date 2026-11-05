@@ -1,6 +1,6 @@
 # BOM and inventory
 
-- **Status:** Phase 0 estimate; supplier quotes and minimum order quantities are still open
+- **Status:** Phase 1 estimate; the Phase 1 batch in §8 is pending approval
 - **Last updated:** 2026-11-05
 - **Currency:** BRL (R$), approximate; adjust for your region and import taxes
 - **Related:** [Requirements](requirements.md), [Roadmap](roadmap.md), [TrackPoint](trackpoint.md)
@@ -42,6 +42,8 @@
 | Heat-shrink, tape, rubber feet | 1 set | 20–40 | Local | Strain relief and desk feet |
 | 4-pin FPC 0.5 mm top contact | 2 | 10–20 | AliExpress | TrackPoint breakout/main PCB |
 | 4-pin FPC 0.5 mm bottom contact | 2 | 10–20 | AliExpress | Alternative contact side |
+| 4-pin FPC 0.5 mm breakout adapter, top contact | 2 | 10–20 | AliExpress | Bench adapter; mates the flex without a custom PCB |
+| 4-pin FPC 0.5 mm breakout adapter, bottom contact | 2 | 10–20 | AliExpress | Alternative contact side |
 | 4-pin 2.54 mm header / JST-SH | 2 | 5–10 | Local | Breakout/PCB |
 | 4.7 kΩ, 100 kΩ resistors; 2.2 µF cap | 1 set | 5–10 | Local | PS/2 pull-ups and RC reset |
 | P-MOSFET/load switch for TrackPoint/fingerprint | 2 | 10–20 | Local | Optional reset/power control |
@@ -70,13 +72,15 @@ The R$ 1,500 budget target is reachable for the keyboard parts at the upper esti
 | Multimeter | Owned | Continuity, voltage, current |
 | Breadboard + jumpers | Owned | Phase 1 |
 | 8-channel logic analyzer | Buy | PS/2/UART decoding; included in the tools total in §2 |
-| Bench power supply | Optional | Current-limited TrackPoint/fingerprint tests |
-| Oscilloscope | Optional | Ripple, signal integrity |
+| Bench power supply | Optional | Current-limited TrackPoint/fingerprint tests; borrow first |
+| Oscilloscope | Optional | Ripple, signal integrity; borrow first |
+| USB-C power meter | Optional | Charge current/voltage; useful but not required |
+| Fine-tip probes / pogo pin set | Optional | Probing the flex/test points; not a substitute for the FPC connector |
 | Calipers | Owned | Case/PCB measurements |
 | 3D printer | Borrowed | Case/plate prototypes |
 | UV/weathering setup | Optional | Case finish |
 
-A bench supply or oscilloscope is not required for Phase 1 if the logic analyzer and multimeter are available. Buy only if a specific measurement demands it.
+A bench supply or oscilloscope is not required for every Phase 1 test, but two measurements do need them: first TrackPoint power-up needs current limiting, and the ripple criterion needs a scope. Borrow them first; buy only if borrowing is not possible and the measurement is on the critical path.
 
 ## 4. PCB and assembly notes
 
@@ -125,3 +129,30 @@ A bench supply or oscilloscope is not required for Phase 1 if the logic analyzer
 - Fallback TrackPoint module supplier, price, and mechanical fit.
 - USB-C cable data rating; charge-only cables are not sufficient for flashing.
 - Import taxes and lead times for JLCPCB/AliExpress.
+
+## 8. Phase 1 procurement batch (pending approval)
+
+This is the first order list for Phase 1. It is a subset of §2/§3, not an additional build. **Do not purchase until the list is approved.** Prices are estimates; confirm supplier, minimum order quantity, and shipping before ordering.
+
+| Priority | Item | Qty | Estimate (R$) | Supplier | Purpose |
+|---:|---|---:|---:|---|---|
+| 1 | 8-channel 24 MHz logic analyzer | 1 | 50–100 | AliExpress | PS/2 capture and decode; confirm sigrok support |
+| 1 | FPC 0.5 mm 4-pin breakout adapter, top contact | 2 | 10–20 | AliExpress | Immediate bench connection to the TrackPoint flex |
+| 1 | FPC 0.5 mm 4-pin breakout adapter, bottom contact | 2 | 10–20 | AliExpress | Contact side is still unconfirmed |
+| 1 | 502030 250 mAh protected LiPo with JST-PH | 2 | 60–100 | AliExpress | Charger, battery ADC, autonomy tests |
+| 1 | USB-C data cable | 2 | 20–40 | Local | Flashing and charging; charge-only cables are not enough |
+| 2 | 4-pin FPC 0.5 mm connector, top contact | 2 | 10–20 | AliExpress | Custom TrackPoint breakout PCB |
+| 2 | 4-pin FPC 0.5 mm connector, bottom contact | 2 | 10–20 | AliExpress | Custom TrackPoint breakout PCB |
+| 2 | N52 magnets, 8x2 or 10x2 mm | 8 | 40–80 | AliExpress | RF/keepout test; final size after pull test |
+| 2 | Resistors 4.7 kΩ / 100 kΩ, caps 2.2 µF / 1–10 µF | 1 set | 5–10 | Local | Pull-ups, RC reset, decoupling |
+| 2 | P-MOSFET / load switch | 2 | 10–20 | Local | TrackPoint power-cycle / power policy |
+| 2 | 4-pin 2.54 mm header or JST-SH | 2 | 5–10 | Local | Breakout/PCB |
+| 2 | TrackPoint breakout PCB fabrication | 5 | 20–40 | JLCPCB | Phase 1 deliverable; can share a panel |
+| 3 | USB-C power meter | 1 | 20–50 | AliExpress | Charge current/voltage; optional |
+| 3 | Fine-tip probes / pogo pin set | 1 | 20–50 | AliExpress | Probing the flex/test points; optional |
+| Borrow | Bench power supply | 1 | 0–250 | Local/maker space | Current-limited first power-up; borrow first |
+| Borrow | Oscilloscope | 1 | 0–300+ | Local/maker space | Ripple measurement; borrow first |
+
+**Batch estimate:** R$ 240–460 for priorities 1–2, most of which is already in the §2 total. The adapter and probe items add about R$ 40–90 to the tools/bench estimate. Bench supply and oscilloscope are borrow-first.
+
+**Minimum viable order if the budget is tight:** logic analyzer, one top-contact and one bottom-contact FPC breakout adapter, two protected cells, USB-C cables, and the passives. The custom breakout PCB and magnets can follow after the first bench session, but they are on the Phase 1 critical path.

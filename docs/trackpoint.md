@@ -1,6 +1,6 @@
 # TrackPoint integration
 
-- **Status:** Phase 0 data collection, Phase 1 validation
+- **Status:** Phase 1 validation
 - **Last updated:** 2026-11-05
 - **Related:** [Architecture](architecture.md), [Bring-up](bringup.md), [BOM](bom.md), [ADR 0005](decisions/0005-trackpoint.md)
 
@@ -56,6 +56,10 @@ Populate the one that mates with the flex. The breakout also includes:
 - optional MOSFET power-cycle;
 - test points for the logic analyzer;
 - bulk decoupling (1–10 µF).
+
+### Bench connection strategy
+
+Use a 4-pin 0.5 mm FPC breakout adapter (top and bottom contact variants) as the primary bench connection. A pogo pin or fine probe is useful for **probing** the flex or test points, but it is not a reliable substitute for a ZIF connector at 0.5 mm pitch: alignment is difficult and a slip can short adjacent contacts. Probe at the 2.54 mm header or the breakout test points, not directly on the flex, once the adapter is mated.
 
 ## 4. Mechanical integration
 

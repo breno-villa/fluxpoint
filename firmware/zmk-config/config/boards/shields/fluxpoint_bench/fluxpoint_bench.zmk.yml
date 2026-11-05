@@ -1,0 +1,13 @@
+file_format: "1"
+id: fluxpoint_bench
+name: Fluxpoint Bench
+type: shield
+requires: [pro_micro]
+exposes: [i2c_oled]
+features:
+  - keys
+  - display
+  - studio
+siblings:
+  - fluxpoint_bench_left
+  - fluxpoint_bench_right

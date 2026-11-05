@@ -38,6 +38,13 @@ jobs:
               west build -s zmk/app -d build/right -b nice_nano_v2 -- \
                 -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
                 -DZMK_CONFIG=$PWD/config -DSHIELD=corne_right
+              west build -s zmk/app -d build/bench-left -b nice_nano_v2 -- \
+                -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+                -DZMK_CONFIG=$PWD/config -DSHIELD=fluxpoint_bench_left
+              west build -s zmk/app -d build/bench-right -b nice_nano_v2 -- \
+                -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+                -DZMK_CONFIG=$PWD/config -DSHIELD=fluxpoint_bench_right \
+                -DSNIPPET=studio-rpc-usb-uart
               west build -s zmk/app -d build/reset -b nice_nano_v2 -- \
                 -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
                 -DZMK_CONFIG=$PWD/config -DSHIELD=settings_reset
@@ -51,4 +58,6 @@ jobs:
           path: |
             firmware/zmk-config/build/left/zephyr/zmk.uf2
             firmware/zmk-config/build/right/zephyr/zmk.uf2
+            firmware/zmk-config/build/bench-left/zephyr/zmk.uf2
+            firmware/zmk-config/build/bench-right/zephyr/zmk.uf2
             firmware/zmk-config/build/reset/zephyr/zmk.uf2

@@ -1,0 +1,53 @@
+/*
+ * Fluxpoint Phase 1 bench shield, right half (central).
+ *
+ * Candidate column pins: D14, D15, D18, D19, D20, D21.
+ * The OLED uses the stock nice!nano I2C pins: D2 (SDA) and D3 (SCL).
+ * TrackPoint candidates are D0/D1 (UART0) with D8/D9 for reset or power
+ * control; they are not wired into this shield until the driver spike.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "fluxpoint_bench.dtsi"
+
+/ {
+    chosen {
+        zephyr,display = &oled;
+    };
+};
+
+&default_transform {
+    col-offset = <6>;
+};
+
+&kscan0 {
+    col-gpios
+        = <&pro_micro 14 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 20 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        ;
+};
+
+&pro_micro_i2c {
+    status = "okay";
+
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <32>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>;
+        segment-remap;
+        com-invdir;
+        com-sequential;
+        inversion-on;
+        prechargep = <0x22>;
+    };
+};

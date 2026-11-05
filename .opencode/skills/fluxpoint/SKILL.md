@@ -9,7 +9,7 @@ Fluxpoint is a low-profile Corne 3x6+3 split keyboard with a salvaged Dell Track
 
 ## Current phase
 
-Phase 0: documentation, ADRs, automation, CI, skills, and a baseline Corne ZMK config. No custom PCB or case yet.
+Phase 1: bench characterization and breadboard. The Phase 0 docs, ADRs, automation, CI, skills, and baseline Corne firmware are complete. The Phase 1 `fluxpoint_bench_left`/`fluxpoint_bench_right` shield, the candidate pin map (`docs/pinmap.md`), and the measurement log (`docs/bench-log.md`) exist. The pin map is not frozen until the Phase 1 gate; no PCB or case yet.
 
 ## Key decisions
 
@@ -27,7 +27,7 @@ Phase 0: documentation, ADRs, automation, CI, skills, and a baseline Corne ZMK c
 
 ## Repository map
 
-- `docs/` — requirements, architecture, roadmap, feasibility, BOM, bring-up, TrackPoint, layout, ADRs.
+- `docs/` — requirements, architecture, roadmap, feasibility, BOM, bring-up, TrackPoint, pin map, bench log, layout, ADRs.
 - `hardware/` — PCB, case, diagrams, TrackPoint notes.
 - `firmware/` — ZMK config, modules, dongle.
 - `software/configurator/` — Flutter app plan.

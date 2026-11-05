@@ -2,7 +2,7 @@
 
 Fluxpoint is a low-profile split keyboard based on the Corne 3x6+3 layout. It combines a Kailh Choc V1 matrix, a socketed nice!nano-class controller, a salvaged TrackPoint, a small OLED, a rechargeable battery per half, and a magnetic mounting interface for desk, chair-arm, and travel use.
 
-> **Status:** Phase 0 — skeleton, requirements, ADRs, and automation. This repository is still a working specification. Hardware and firmware are not final.
+> **Status:** Phase 1 — bench characterization and breadboard. The Phase 0 documentation, ADRs, automation, and baseline firmware are complete; the custom PCB and case are not designed yet.
 
 ## At a glance
 
@@ -35,6 +35,8 @@ Start with the [documentation index](docs/README.md).
 - [Bring-up and acceptance tests](docs/bringup.md)
 - [Automation and MCPs](docs/automation.md)
 - [TrackPoint integration](docs/trackpoint.md)
+- [Pin map](docs/pinmap.md)
+- [Phase 1 bench log](docs/bench-log.md)
 - [Layout and keymap](docs/layout.md)
 - [Architecture decision records](docs/decisions/README.md)
 
@@ -42,7 +44,7 @@ Start with the [documentation index](docs/README.md).
 
 ```text
 .
-├── docs/                  # requirements, architecture, roadmap, ADRs, BOM, bring-up
+├── docs/                  # requirements, architecture, roadmap, ADRs, BOM, bring-up, pin map, bench log
 ├── hardware/              # PCB, case, diagrams, TrackPoint notes
 ├── firmware/              # ZMK config, custom modules, dongle
 ├── software/              # Flutter configurator (Phase 4)
@@ -77,7 +79,7 @@ Flash the resulting `firmware/zmk-config/build/left/zephyr/zmk.uf2` by copying i
 
 ## Design phase
 
-This project is milestone-based, not date-based. Phase 0 closes the documentation and tooling. Phase 1 validates the riskiest pieces on a breadboard before any custom PCB is ordered. See the [roadmap](docs/roadmap.md).
+This project is milestone-based, not date-based. Phase 0 closed the documentation and tooling. Phase 1 validates the riskiest pieces on a breadboard before any custom PCB is ordered. See the [roadmap](docs/roadmap.md) and the [bench log](docs/bench-log.md).
 
 ## Contributing
 

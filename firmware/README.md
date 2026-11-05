@@ -12,12 +12,12 @@ Fluxpoint uses **ZMK/Zephyr** with custom modules where ZMK does not provide a f
 
 ## Current status
 
-The `zmk-config/` baseline builds the in-tree Corne shield for tooling and breadboard bring-up. It is **not** the final Fluxpoint shield:
+The `zmk-config/` baseline builds the in-tree Corne shield for tooling validation and the Phase 1 `fluxpoint_bench_left`/`fluxpoint_bench_right` shield for breadboard bring-up. Neither is the final Fluxpoint shield:
 
-- The baseline is left-central, matching the stock Corne shield.
-- The final firmware will be **right-central**, because the TrackPoint is on the right half.
-- The baseline does not include the TrackPoint module; that is added in Phase 2.
-- The baseline enables ZMK Studio for runtime keymap testing.
+- The Corne baseline is left-central, matching the stock shield.
+- The bench shield is **right-central**, matching the final architecture; it uses the candidate pin map in [`docs/pinmap.md`](../docs/pinmap.md).
+- The bench shield has the matrix and OLED; it does **not** include the TrackPoint module yet.
+- Both enable ZMK Studio for runtime keymap testing.
 
 ## Build and flash
 
@@ -41,9 +41,10 @@ The CI workflow and the command in [Automation](../docs/automation.md) build the
 ## TODO
 
 - [x] Baseline CI build green
+- [x] Phase 1 bench shield (matrix + OLED, right-central)
 - [ ] 10-second display behavior
 - [ ] TrackPoint module integration
-- [ ] Custom shield and pin map
-- [ ] Right-central split role
+- [ ] Custom shield and frozen pin map
+- [ ] Right-central final split role
 - [ ] ZMK Studio physical layout for Fluxpoint
 - [ ] Flutter configurator (Phase 4)

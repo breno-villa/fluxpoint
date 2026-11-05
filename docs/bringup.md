@@ -1,6 +1,6 @@
 # Bring-up and acceptance tests
 
-- **Status:** Phase 0 procedure
+- **Status:** Phase 1 procedure
 - **Last updated:** 2026-11-05
 - **Related:** [Requirements](requirements.md), [TrackPoint](trackpoint.md), [BOM](bom.md), [Automation](automation.md)
 
@@ -14,6 +14,8 @@
 - Do not hot-plug a wired split link; v1 has no wired split.
 
 ## 2. Phase 1 — bench characterization
+
+Record every measurement in [Bench log](bench-log.md). The Phase 1 firmware is the `fluxpoint_bench_left`/`fluxpoint_bench_right` shield in `firmware/zmk-config/config/boards/shields/fluxpoint_bench/`; it uses the candidate map in [Pin map](pinmap.md). Do not freeze a pin until the corresponding check passes.
 
 ### 2.1 nice!nano clone
 
@@ -29,7 +31,7 @@
 ### 2.2 Matrix breadboard
 
 1. Wire a 4x6 matrix with 1N4148 through-hole diodes, col2row.
-2. Use the baseline ZMK Corne firmware with the same row/column pins, or build a temporary shield.
+2. Flash `fluxpoint_bench_left`/`fluxpoint_bench_right`; the candidate rows/columns match the stock Corne wiring.
 3. Test every key with a key tester.
 4. Check for ghosting by pressing combinations of three keys in the same row/column.
 
@@ -49,7 +51,7 @@
 1. Inspect the flex and connector; confirm 4 contacts and 0.5 mm pitch.
 2. Use the breakout with both top/bottom FPC footprints; populate the one that mates.
 3. Identify VCC/GND by trace width/continuity; do not guess polarity.
-4. Power at 3.3 V with a 100 mA limit; measure current.
+4. Power at 3.3 V with a 100 mA limit; measure current. If no current-limited supply is available, borrow one before first power-up; do not connect the module directly to an unlimited 3.3 V rail.
 5. Capture CLK/DATA with the logic analyzer at power-up.
 6. Decode PS/2; look for the `0xAA` self-test response.
 7. Connect to a nice!nano and build the ZMK PS/2 driver configuration.
@@ -73,6 +75,8 @@
 6. Verify charging from USB-C and battery level reporting.
 
 **Pass:** 3.3 V rail is within 3.3 V ±5% and ≤100 mVpp; current is consistent with ≥2 weeks autonomy; range ≥5 m; charging terminates correctly.
+
+**Instrument note:** the initial bench has a multimeter but no oscilloscope or bench supply. Record the actual method in the bench log. Do not claim the ripple criterion from a multimeter average; borrow a scope or mark the measurement as pending.
 
 ## 3. Phase 2 — PCB and case bring-up
 

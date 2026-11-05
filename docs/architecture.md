@@ -1,6 +1,6 @@
 # Architecture
 
-- **Status:** Phase 0 baseline, product-level architecture agreed
+- **Status:** Phase 1 baseline, product-level architecture agreed
 - **Last updated:** 2026-11-05
 - **Related:** [Requirements](requirements.md), [ADRs](decisions/README.md), [TrackPoint](trackpoint.md), [Bring-up](bringup.md)
 
@@ -190,7 +190,7 @@ The v1 right PCB reserves a 4-pin UART header and load switch for the fingerprin
 
 ## 5. Preliminary pin budget
 
-The exact pin map is frozen at the end of Phase 1 (pin-map gate) and used for the Phase 2 schematic. The table is a feasibility check, not a final assignment.
+The exact pin map is frozen at the end of Phase 1 (pin-map gate) and used for the Phase 2 schematic. The working candidate map and gate checklist are in [Pin map](pinmap.md); the table below is a feasibility check, not a final assignment.
 
 | Function | Pins | v1 populated | Future |
 |---|---:|---|---|
@@ -204,7 +204,7 @@ The exact pin map is frozen at the end of Phase 1 (pin-map gate) and used for th
 | Fingerprint load switch | 1 | No | Header, unpopulated |
 | Spare/test points | 1–2 | — | Bring-up |
 
-The nice!nano exposes 21 GPIO. The populated v1 budget is 15–16 pins including the shared display header and an optional TrackPoint reset. The future fingerprint header adds 3 pins, for 18–19; if the clone needs a battery ADC pin, add 1 more (19–20), leaving 1–2 spare GPIO. Confirm that the shared display pins support both I2C and SPI at the pin-map gate. High-frequency pins are preferred for the TrackPoint UART to avoid BLE interference.
+The Pro Micro header exposes **18 GPIO** on the documented nice!nano v2. The populated v1 budget is 16–17 pins including the shared display header and an optional TrackPoint reset. The future fingerprint header adds 3 pins, for 19–20, which exceeds 18 unless the clone exposes extra pads, the NFC pins are enabled as GPIO, a load switch is shared, an I2C expander is added, or the expansion header is reduced. Phase 1 must measure the clone and resolve this before the pin-map gate. Confirm that the shared display pins support both I2C and SPI at the gate. High-frequency pins are preferred for the TrackPoint UART to avoid BLE interference.
 
 ## 6. Decision records
 
@@ -220,6 +220,7 @@ The nice!nano exposes 21 GPIO. The populated v1 budget is 15–16 pins including
 - [ADR 0010: Configurator app](decisions/0010-configurator-app.md)
 - [ADR 0011: Automation and toolchain](decisions/0011-automation.md)
 - [ADR 0012: Licensing and repository](decisions/0012-licensing.md)
+- [ADR 0013: Pin map and board-level interfaces](decisions/0013-pin-map.md) — proposed
 
 ## 7. Open issues
 

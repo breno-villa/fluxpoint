@@ -1,8 +1,8 @@
 # Roadmap
 
-- **Status:** Phase 0 baseline
+- **Status:** Phase 1 — bench characterization
 - **Last updated:** 2026-11-05
-- **Related:** [Requirements](requirements.md), [Architecture](architecture.md), [Feasibility](feasibility.md)
+- **Related:** [Requirements](requirements.md), [Architecture](architecture.md), [Feasibility](feasibility.md), [Pin map](pinmap.md), [Bench log](bench-log.md)
 
 This roadmap is milestone-based. A phase is complete only when its exit criteria are met; dates are intentionally omitted.
 
@@ -18,6 +18,8 @@ This roadmap is milestone-based. A phase is complete only when its exit criteria
 | 5 | Add optional capabilities | Dongle, fingerprint/FIDO2, wired split | Each optional feature has its own ADR and acceptance test |
 
 ## Phase 0 — Skeleton and tooling
+
+**Status:** Complete (2026-11-05).
 
 **Deliverables**
 
@@ -46,10 +48,15 @@ This roadmap is milestone-based. A phase is complete only when its exit criteria
 
 ## Phase 1 — Bench characterization and breadboard
 
+**Status:** In progress.
+
 **Deliverables**
 
+- Phase 1 bench shield (`fluxpoint_bench_left/right`) with the candidate pin map, right-central split role, and OLED.
+- Pin-map draft and ADR 0013; frozen at the pin-map gate.
+- Bench log with measured values and evidence.
 - nice!nano clone characterization: pinout, charger, 3.3 V rail, current, UF2 flashing.
-- Breadboard matrix with 4x6 wiring and ZMK baseline firmware.
+- Breadboard matrix with 4x6 wiring and the bench shield.
 - TrackPoint breakout PCB: 4-pin FPC 0.5 mm top/bottom footprints, header, pull-ups, reset/MOSFET options.
 - TrackPoint test: continuity, 3.3 V current, logic capture, PS/2 driver, reset strategy.
 - OLED test: I2C address, display widgets, blank behavior.

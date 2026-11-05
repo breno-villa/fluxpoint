@@ -1,0 +1,21 @@
+/*
+ * Fluxpoint Phase 1 bench shield, left half (peripheral).
+ *
+ * Candidate column pins: D21, D20, D19, D18, D15, D14.
+ * Confirm the clone pinout before freezing the map.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "fluxpoint_bench.dtsi"
+
+&kscan0 {
+    col-gpios
+        = <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 20 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+        ;
+};

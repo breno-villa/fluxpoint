@@ -9,9 +9,9 @@ Read `firmware/README.md`, `firmware/zmk-config/README.md`, `docs/layout.md`, an
 
 ## Current baseline
 
-- `firmware/zmk-config` builds the in-tree Corne shield.
-- Baseline is **left-central** (stock Corne); the final Fluxpoint firmware is **right-central** because the TrackPoint is on the right half.
-- Baseline has no TrackPoint; it is a matrix/OLED/Studio bring-up image.
+- `firmware/zmk-config` builds the in-tree Corne shield and the Phase 1 `fluxpoint_bench_left`/`fluxpoint_bench_right` shield.
+- The Corne baseline is **left-central**; the Phase 1 bench shield and the final Fluxpoint firmware are **right-central** because the TrackPoint is on the right half.
+- The bench shield has the matrix and OLED; it has no TrackPoint node yet. Its pins are candidates from `docs/pinmap.md`, not a frozen map.
 - `config/corne.keymap` has QWERTY, lower, raise, adjust, and a Studio unlock binding.
 - `config/corne.conf` enables display, sleep, and ZMK Studio.
 
@@ -30,13 +30,15 @@ Read `firmware/README.md`, `firmware/zmk-config/README.md`, `docs/layout.md`, an
 ```bash
 docker run --rm -v "$PWD:/workspace" -w /workspace/firmware/zmk-config \
   zmkfirmware/zmk-build-arm:stable bash -lc '
-    west init -l config
     west update
-    west build -s zmk/app -d build/left -b nice_nano_v2 -- \
-      -DZMK_CONFIG=$PWD/config -DSHIELD=corne_left \
+    west build -s zmk/app -d build/bench-right -b nice_nano_v2 -- \
+      -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+      -DZMK_CONFIG=$PWD/config -DSHIELD=fluxpoint_bench_right \
       -DSNIPPET=studio-rpc-usb-uart
   '
 ```
+
+Use `west init -l config` only on a fresh workspace; after the first build, run `west update` instead.
 
 ## Flash
 

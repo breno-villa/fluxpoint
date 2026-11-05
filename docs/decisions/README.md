@@ -16,6 +16,7 @@ ADRs capture decisions that are expensive to reverse. Each record states the con
 | [0010](0010-configurator-app.md) | Flutter configurator | Accepted | 2026-11-05 |
 | [0011](0011-automation.md) | Automation and toolchain | Accepted | 2026-11-05 |
 | [0012](0012-licensing.md) | Licensing and repository | Accepted | 2026-11-05 |
+| [0013](0013-pin-map.md) | Pin map and board-level interfaces | Proposed | 2026-11-05 |
 
 ## Template
 

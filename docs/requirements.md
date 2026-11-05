@@ -1,6 +1,6 @@
 # Requirements
 
-- **Status:** Phase 0 baseline, agreed at product level
+- **Status:** Phase 1 baseline, agreed at product level
 - **Last updated:** 2026-11-05
 - **Related:** [Architecture](architecture.md), [Roadmap](roadmap.md), [ADRs](decisions/README.md)
 

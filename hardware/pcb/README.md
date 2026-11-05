@@ -26,7 +26,7 @@ Planned Phase 2 deliverables: two mirrored KiCad boards for the left and right h
 
 ## Before layout
 
-- [ ] Close the pin map (matrix, TrackPoint, OLED, battery ADC, expansion).
+- [ ] Close the pin map (matrix, TrackPoint, OLED, battery ADC, expansion); see [`docs/pinmap.md`](../../docs/pinmap.md) and ADR 0013.
 - [ ] Confirm TrackPoint protocol/reset and connector contact side.
 - [ ] Confirm nice!nano clone pinout and 3.3 V current budget.
 - [ ] Confirm antenna keepout with battery/magnets.

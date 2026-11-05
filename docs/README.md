@@ -12,6 +12,8 @@ This directory is the source of truth for product requirements, architecture, de
 | [Bring-up and acceptance](bringup.md) | Bench procedures and measurable acceptance tests |
 | [Automation](automation.md) | Toolchain, MCP servers, skills, CI, and scripts |
 | [TrackPoint](trackpoint.md) | Salvaged module data, connector, reset strategy, and test plan |
+| [Pin map](pinmap.md) | Candidate matrix, TrackPoint, display, and expansion pins; Phase 1 gate |
+| [Bench log](bench-log.md) | Phase 1 measurements, evidence, and exit checklist |
 | [Layout and keymap](layout.md) | 42-key layout, layers, thumb cluster, and pointing-device bindings |
 | [ADRs](decisions/README.md) | Accepted architecture decisions and trade-offs |
 
@@ -25,4 +27,4 @@ This directory is the source of truth for product requirements, architecture, de
 
 ## Status
 
-Phase 0. Requirements and architecture are agreed at the product level; PCB, case, and final firmware are not designed yet. The baseline ZMK configuration exists only to validate tooling and bring-up.
+Phase 1. Requirements and architecture are agreed at the product level; the Phase 1 bench shield, pin-map draft, and measurement log exist, but the PCB, case, and final firmware are not designed yet. The baseline Corne configuration and the Phase 1 `fluxpoint_bench` shield validate tooling and breadboard bring-up.

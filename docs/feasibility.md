@@ -1,6 +1,6 @@
 # Feasibility assessment
 
-- **Status:** Phase 0 baseline
+- **Status:** Phase 1 baseline
 - **Last updated:** 2026-11-05
 - **Related:** [Requirements](requirements.md), [Architecture](architecture.md), [TrackPoint](trackpoint.md), [Roadmap](roadmap.md)
 

@@ -17,13 +17,15 @@ Detailed integration data lives in [docs/trackpoint.md](../../docs/trackpoint.md
 
 ## Breakout plan
 
-- 4-pin FPC 0.5 mm top-contact footprint.
-- 4-pin FPC 0.5 mm bottom-contact footprint.
+- Bench first: 4-pin FPC 0.5 mm breakout adapter (top and bottom contact variants) to a 2.54 mm header.
+- Custom PCB: 4-pin FPC 0.5 mm top-contact footprint.
+- Custom PCB: 4-pin FPC 0.5 mm bottom-contact footprint.
 - 4-pin header/JST-SH for VCC/GND/CLK/DATA.
 - 4.7 kΩ pull-ups on CLK/DATA.
 - RC reset (2x 4.7 kΩ, 100 kΩ, 2.2 µF).
 - Optional P-MOSFET power-cycle.
 - Test points and 1–10 µF decoupling.
+- Pogo pins/probes are for probing only; at 0.5 mm pitch they are not a reliable substitute for the ZIF connector.
 
 ## Bracket plan
 

@@ -5,12 +5,12 @@ description: Use when testing Fluxpoint hardware on the bench, characterizing th
 
 # Bring-up workflow
 
-Read `docs/bringup.md`, `docs/trackpoint.md`, `docs/requirements.md` §5, and `docs/bom.md`.
+Read `docs/bringup.md`, `docs/pinmap.md`, `docs/bench-log.md`, `docs/trackpoint.md`, `docs/requirements.md` §5, and `docs/bom.md`.
 
 ## Safety
 
 - Protected LiPo only; verify polarity; never charge unattended.
-- Current-limit the bench supply: 100 mA first power-up, 300 mA for TrackPoint/fingerprint.
+- Current-limit the bench supply: 100 mA first power-up, 300 mA for TrackPoint/fingerprint. If no current-limited supply is available, borrow one before first power-up.
 - Disconnect power before rewiring.
 - Treat the TrackPoint flex as fragile; support the stiffener; do not pull the flex.
 - ESD precautions around the controller and TrackPoint.
@@ -18,10 +18,12 @@ Read `docs/bringup.md`, `docs/trackpoint.md`, `docs/requirements.md` §5, and `d
 ## Phase 1 order
 
 1. nice!nano clone: shorts, 3.3 V, charger, UF2, pinout.
-2. Matrix: 4x6, 1N4148, col2row, all keys.
+2. Matrix: 4x6, 1N4148, col2row, all keys; flash `fluxpoint_bench_left/right`.
 3. OLED: I2C 0x3C, display, blank.
 4. TrackPoint: continuity, 3.3 V current, logic capture, PS/2 decode, driver, reset.
 5. Power/BLE: active/deep-sleep current, range, USB/BLE hosts.
+
+Record every measurement in `docs/bench-log.md`. Do not mark a criterion passed from a multimeter average when it needs a scope; mark it pending and record the instrument gap.
 
 ## TrackPoint specifics
 
