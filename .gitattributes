@@ -1,6 +1,6 @@
 * text=auto eol=lf
 
-# KiCad: arquivos texto com estrutura própria
+# KiCad: text files with their own structure
 *.kicad_pcb text eol=lf
 *.kicad_sch text eol=lf
 *.kicad_pro text eol=lf
@@ -8,7 +8,7 @@
 *.kicad_mod text eol=lf
 *.kicad_wks text eol=lf
 
-# Binários / artefatos
+# Binaries / artifacts
 *.step -text
 *.stp -text
 *.stl -text

@@ -1,0 +1,41 @@
+Fluxpoint
+=========
+
+Copyright (c) 2026 Fluxpoint contributors.
+
+Licensing
+---------
+
+- Hardware: CERN-OHL-S-2.0 (LICENSE/CERN-OHL-S-2.0.txt)
+- Firmware and software: MIT (LICENSE/MIT.txt)
+- Documentation: CC BY 4.0 (LICENSE/CC-BY-4.0.txt)
+
+Third-party attribution
+-----------------------
+
+Corne keyboard (crkbd)
+- Author: foostan and contributors
+- Repository: https://github.com/foostan/crkbd
+- License: MIT (LICENSE_MIT) and CC BY 4.0 (LICENSE_CC)
+- Fluxpoint uses the Corne 3x6+3 layout as its reference and may reuse or adapt matrix/controller blocks. Modifications are documented in the repository history. Corne-derived files retain their original notices.
+
+ZMK firmware
+- Repository: https://github.com/zmkfirmware/zmk
+- License: MIT
+- Fluxpoint uses ZMK as its firmware base.
+
+ZMK Studio
+- Repository: https://github.com/zmkfirmware/zmk-studio
+- License: MIT
+- Fluxpoint uses the ZMK Studio protocol for runtime keymap editing.
+
+TrackPoint driver (if used)
+- Repository: https://github.com/infused-kim/kb_zmk_ps2_mouse_trackpoint_driver
+- License: check the repository's LICENSE file before redistribution.
+- Fluxpoint may use this module to support the salvaged PS/2 TrackPoint.
+
+nice!view
+- Product: https://nicekeyboards.com/nice-view
+- The final PCB may include a compatible footprint/adapter; no nice!view design files are redistributed here.
+
+Kailh, Choc, Dell, and other product names are trademarks of their respective owners. This project is not affiliated with or endorsed by those companies.

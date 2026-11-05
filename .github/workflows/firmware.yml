@@ -1,0 +1,54 @@
+name: Firmware baseline
+
+on:
+  push:
+    paths:
+      - "firmware/zmk-config/**"
+      - ".github/workflows/firmware.yml"
+  pull_request:
+    paths:
+      - "firmware/zmk-config/**"
+      - ".github/workflows/firmware.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build baseline with ZMK ARM container
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/workspace" \
+            -w /workspace/firmware/zmk-config \
+            zmkfirmware/zmk-build-arm:stable \
+            bash -lc '
+              set -euo pipefail
+              west init -l config
+              west update --narrow --group-filter=-optional
+              west build -s zmk/app -d build/left -b nice_nano_v2 -- \
+                -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+                -DZMK_CONFIG=$PWD/config -DSHIELD=corne_left \
+                -DSNIPPET=studio-rpc-usb-uart
+              west build -s zmk/app -d build/right -b nice_nano_v2 -- \
+                -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+                -DZMK_CONFIG=$PWD/config -DSHIELD=corne_right
+              west build -s zmk/app -d build/reset -b nice_nano_v2 -- \
+                -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+                -DZMK_CONFIG=$PWD/config -DSHIELD=settings_reset
+            '
+
+      - name: Upload firmware artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: fluxpoint-baseline
+          if-no-files-found: error
+          path: |
+            firmware/zmk-config/build/left/zephyr/zmk.uf2
+            firmware/zmk-config/build/right/zephyr/zmk.uf2
+            firmware/zmk-config/build/reset/zephyr/zmk.uf2

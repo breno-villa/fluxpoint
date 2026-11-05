@@ -1,0 +1,4 @@
+pyserial>=3.5
+pyvisa>=1.14
+pyyaml>=6.0
+pytest>=8.0

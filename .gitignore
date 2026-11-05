@@ -1,4 +1,4 @@
-# Sistema operacional / editores
+# OS / editors
 .DS_Store
 Thumbs.db
 *.swp
@@ -16,9 +16,15 @@ venv/
 # Zephyr / ZMK
 build/
 .west/
-# Dependências externas de um workspace west na raiz
+# External dependencies of a west workspace at the repo root
 /zephyr/
 /modules/
+# West workspace inside zmk-config (created by west update)
+/firmware/zmk-config/zmk/
+/firmware/zmk-config/zephyr/
+/firmware/zmk-config/modules/
+/firmware/zmk-config/optional/
+/firmware/zmk-config/tools/
 *.uf2
 *.hex
 *.bin
@@ -28,6 +34,11 @@ build/
 *.lst
 *.su
 
+# Flutter / Dart (phase 3)
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+
 # KiCad
 *-backups/
 *.bak
@@ -36,12 +47,12 @@ build/
 fp-info-cache
 _autosave-*
 
-# CAD / artefatos gerados
+# CAD / generated artifacts
 *.stl
 *.3mf
 *.gcode
 
-# Segredos e configurações locais
+# Secrets and local settings
 .env
 .env.*
 *.pem
