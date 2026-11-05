@@ -153,6 +153,6 @@ This is the first order list for Phase 1. It is a subset of §2/§3, not an addi
 | Borrow | Bench power supply | 1 | 0–250 | Local/maker space | Current-limited first power-up; borrow first |
 | Borrow | Oscilloscope | 1 | 0–300+ | Local/maker space | Ripple measurement; borrow first |
 
-**Batch estimate:** R$ 240–460 for priorities 1–2, most of which is already in the §2 total. The adapter and probe items add about R$ 40–90 to the tools/bench estimate. Bench supply and oscilloscope are borrow-first.
+**Batch estimate:** R$ 250–480 for priorities 1–2, most of which is already in the §2 total. The adapter and probe items add about R$ 40–90 to the tools/bench estimate. Bench supply and oscilloscope are borrow-first.
 
 **Minimum viable order if the budget is tight:** logic analyzer, one top-contact and one bottom-contact FPC breakout adapter, two protected cells, USB-C cables, and the passives. The custom breakout PCB and magnets can follow after the first bench session, but they are on the Phase 1 critical path.
