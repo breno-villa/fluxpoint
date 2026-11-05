@@ -40,7 +40,7 @@ The CI workflow and the command in [Automation](../docs/automation.md) build the
 
 ## TODO
 
-- [ ] Baseline CI build green
+- [x] Baseline CI build green
 - [ ] 10-second display behavior
 - [ ] TrackPoint module integration
 - [ ] Custom shield and pin map
