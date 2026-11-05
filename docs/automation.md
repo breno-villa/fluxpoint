@@ -19,7 +19,13 @@ The agent proposes and executes; a human reviews every schematic, PCB, mechanica
 
 ## 2. Local toolchain
 
-The development machine is Arch Linux. Install the core tools:
+The development machine is Arch Linux. Install the core tools with the setup script:
+
+```bash
+./tools/setup_dev.sh
+```
+
+Equivalent manual command:
 
 ```bash
 sudo pacman -S --needed \

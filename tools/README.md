@@ -2,6 +2,16 @@
 
 Automation helpers for Fluxpoint.
 
+## Setup
+
+On Arch Linux:
+
+```bash
+./tools/setup_dev.sh
+```
+
+The script installs KiCad, FreeCAD, OpenSCAD, ARM GCC, probe-rs, OpenOCD, sigrok-cli, and Python test dependencies. It prints the MCP configuration snippet; it does not edit your OpenCode config.
+
 ## Requirements
 
 Python 3.10+.
