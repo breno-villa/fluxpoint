@@ -1,6 +1,6 @@
 # BOM and inventory
 
-- **Status:** Phase 0 estimate
+- **Status:** Phase 0 estimate; supplier quotes and minimum order quantities are still open
 - **Last updated:** 2026-11-05
 - **Currency:** BRL (R$), approximate; adjust for your region and import taxes
 - **Related:** [Requirements](requirements.md), [Roadmap](roadmap.md), [TrackPoint](trackpoint.md)
@@ -38,6 +38,7 @@
 | Camera ball head + clamp | 2 | 100–200 | Local/online | Desk/chair-arm mount; 1/4"-20 |
 | Screws, standoffs, inserts | 1 set | 30–60 | Local | M1.4/M2; case/PCB/plate |
 | JST-PH connectors and wires | 1 set | 20–40 | Local/AliExpress | Battery and power |
+| USB-C data/charging cables | 2 | 20–40 | Local | One per half; data-capable for flashing |
 | Heat-shrink, tape, rubber feet | 1 set | 20–40 | Local | Strain relief and desk feet |
 | 4-pin FPC 0.5 mm top contact | 2 | 10–20 | AliExpress | TrackPoint breakout/main PCB |
 | 4-pin FPC 0.5 mm bottom contact | 2 | 10–20 | AliExpress | Alternative contact side |
@@ -48,10 +49,18 @@
 | PETG/ABS filament | 1 spool | 50–100 | Local | Case/plate prototypes |
 | TrackPoint breakout PCB | 5 | 20–40 | JLCPCB | Small board; can share panel |
 | Schottky diode SS14/BAT54 (optional) | 10 | 10–20 | Local | Backfeed/protection experiments |
-| Nice!view display | 0 | 0 | — | Phase 3/4; footprint only in v1 |
+| Known PS/2 TrackPoint module (fallback) | 1 | 50–150 | AliExpress/local | Contingency only; not included in the base total |
+| Nice!view display | 0 | 0 | — | Not purchased in v1; final PCB footprint only |
 | Fingerprint wiring/header | 0 | 0 | — | Header/load switch unpopulated in v1 |
 
-**Estimated total:** R$ 700–1,400, within the R$ 500–1,500 budget. Shipping/import taxes can push the upper end.
+**Estimated totals:**
+
+- **Keyboard parts:** R$ 770–1,500, including the prototype TrackPoint breakout PCB and USB-C cables, excluding tools/consumables and the optional Schottky diodes.
+- **Tools and consumables:** R$ 100–200 for the logic analyzer and filament; the logic analyzer is listed in §3, and the filament is a case consumable.
+- **Total for the v1 build:** R$ 870–1,700 before shipping/import taxes.
+- **Contingency:** R$ 50–150 for a known PS/2 TrackPoint module if the salvaged Dell module cannot be used; R$ 10–20 for the optional Schottky experiments.
+
+The R$ 1,500 budget target is reachable for the keyboard parts at the upper estimate, but the total exceeds it once tools and shipping are included. Trim by borrowing the logic analyzer, using local filament, combining PCB/plate panels, or deferring optional items. Quotes for PCBs and plates assume a small panel/order; the table lists the quantity needed for one keyboard, not the minimum order quantity.
 
 ## 3. Tools and test equipment
 
@@ -60,7 +69,7 @@
 | Soldering station | Owned | Assembly and rework |
 | Multimeter | Owned | Continuity, voltage, current |
 | Breadboard + jumpers | Owned | Phase 1 |
-| 8-channel logic analyzer | Buy | PS/2/UART decoding |
+| 8-channel logic analyzer | Buy | PS/2/UART decoding; included in the tools total in §2 |
 | Bench power supply | Optional | Current-limited TrackPoint/fingerprint tests |
 | Oscilloscope | Optional | Ripple, signal integrity |
 | Calipers | Owned | Case/PCB measurements |
@@ -72,6 +81,7 @@ A bench supply or oscilloscope is not required for Phase 1 if the logic analyzer
 ## 4. PCB and assembly notes
 
 - PCB: 2 layers, 1.6 mm, HASL, 1 oz copper; ENIG optional for fine-pitch pads.
+- PCB and FR4 plate estimates assume a small panel/order (typically 5 boards); the table quantity is per keyboard, not the minimum order quantity. Combine left/right PCBs, plates, and the TrackPoint breakout in one order where possible.
 - Switch plate: FR4 1.2–1.6 mm; 1.2 mm preferred for height, 1.6 mm for stiffness.
 - Controller: socketed with 2.54 mm headers; do not solder the nice!nano directly.
 - Hot-swap sockets: through-hole; verify orientation before soldering.
@@ -110,5 +120,8 @@ A bench supply or oscilloscope is not required for Phase 1 if the logic analyzer
 - Battery connector polarity and wire length.
 - FPC contact side; buy both top and bottom connectors.
 - Keycap color/legend preference; MBK blank is assumed.
-- Whether to order 5 or 10 PCBs to allow rework.
+- Whether to order 5 or 10 PCBs to allow rework; confirm minimum order quantities and panelization for PCBs and FR4 plates.
+- Whether the logic analyzer can be borrowed or shared to keep the build within budget.
+- Fallback TrackPoint module supplier, price, and mechanical fit.
+- USB-C cable data rating; charge-only cables are not sufficient for flashing.
 - Import taxes and lead times for JLCPCB/AliExpress.

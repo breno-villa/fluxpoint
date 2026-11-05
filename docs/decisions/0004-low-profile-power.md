@@ -24,3 +24,4 @@ The keyboard should be as low-profile as possible. Choc V1 switches and MBK keyc
 - The case bottom is not uniform; the battery pocket and feet must be designed together so the keyboard sits flat.
 - The controller socket does not force the key area height, but it must be below the keycaps at the top edge.
 - Battery capacity/autonomy and RF range must be verified, not assumed.
+- The 250 mAh cell and ≥2 week target imply an average current of ≈0.75 mA; TrackPoint idle current is the largest unknown and may require a load switch or duty-cycle policy.

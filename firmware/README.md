@@ -46,4 +46,4 @@ The CI workflow and the command in [Automation](../docs/automation.md) build the
 - [ ] Custom shield and pin map
 - [ ] Right-central split role
 - [ ] ZMK Studio physical layout for Fluxpoint
-- [ ] Flutter configurator (Phase 3)
+- [ ] Flutter configurator (Phase 4)

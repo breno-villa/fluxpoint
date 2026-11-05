@@ -6,7 +6,7 @@
 
 ## Context
 
-The project vision includes a split keyboard, TrackPoint, OLED, wireless split, dongle, fingerprint, FIDO2, wired split, and a Flutter configurator. Trying to deliver all of it in the first hardware revision would multiply firmware, security, and mechanical risk. The available budget is R$ 500–1,500, the timeline is open, and the builder is returning to electronics after a long break.
+The project vision includes a split keyboard, TrackPoint, OLED, wireless split, dongle, fingerprint, FIDO2, wired split, and a Flutter configurator. Trying to deliver all of it in the first hardware revision would multiply firmware, security, and mechanical risk. The available budget is R$ 500–1,500, the timeline is open, and the builder is returning to electronics after a long break. The current BOM total upper estimate exceeds the budget target before shipping, so tools/optional items must be trimmed.
 
 ## Decision
 
@@ -15,7 +15,7 @@ v1 is a 42-key Corne 3x6+3 split keyboard with:
 - Kailh Choc V1 hot-swap switches and a socketed nice!nano clone;
 - BLE split and USB/BLE host connectivity;
 - the salvaged Dell TrackPoint in the right thumb cluster;
-- a 0.91" SSD1306 OLED with a 10-second wake;
+- a 0.91" SSD1306 OLED on the right half with a 10-second wake;
 - a 502030 250 mAh battery per half;
 - a 3D-printed case with a magnetic N52/steel-plate/ball-head mount.
 

@@ -6,9 +6,8 @@ Planned Phase 2 deliverables: two mirrored KiCad boards for the left and right h
 
 - nice!nano clone socket, matrix, battery connector, power switch.
 - TrackPoint 4-pin FPC connector (0.5 mm) near the right thumb cluster.
-- OLED header/footprint (I2C).
+- Shared 3-GPIO display header: I2C OLED (v1) or SPI nice!view (alternative); only one populated.
 - Future fingerprint 4-pin UART header + load switch (unpopulated).
-- nice!view footprint/adaptor path.
 - Antenna keepout.
 
 ## Left half

@@ -11,7 +11,7 @@ The builder wants to configure the keyboard after it is assembled without rebuil
 ## Decision
 
 - Enable ZMK Studio in the v1 firmware.
-- Build a Flutter configurator in Phase 3, in the monorepo at `software/configurator`.
+- Build a Flutter configurator in Phase 4, in the monorepo at `software/configurator`.
 - Targets: Android, Linux, Windows, macOS.
 - MVP: keymap/layers, keycodes/behaviors, import/export, local profiles.
 - Later: combos, macros, tap dances, TrackPoint/display/power settings, BLE profiles, DFU, diagnostics.
@@ -20,7 +20,7 @@ The builder wants to configure the keyboard after it is assembled without rebuil
 
 ## Consequences
 
-- The app is a significant Phase 3 project, not a v1 dependency.
+- The app is a significant Phase 4 project, not a v1 dependency.
 - Advanced settings require custom ZMK RPC work and version compatibility.
 - The app can reuse the official protocol and avoid a proprietary configuration format.
 - The firmware must include a physical layout and a Studio unlock binding.

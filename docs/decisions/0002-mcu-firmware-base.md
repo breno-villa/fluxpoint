@@ -6,7 +6,7 @@
 
 ## Context
 
-The builder already owns four Tenstar/SuperMini nice!nano v2 clones (nRF52840). ZMK supports the nice!nano v2 and provides BLE split, USB HID, displays, and pointing-device support. A fully custom bare nRF52840 module would reduce height but require RF/antenna design and a new board.
+The builder already owns four Tenstar/SuperMini nice!nano v2 clones (nRF52840). ZMK supports the nice!nano v2 and provides BLE split, USB HID, displays, and a module ecosystem; the TrackPoint PS/2 driver comes from a pinned fork/module. A fully custom bare nRF52840 module would reduce height but require RF/antenna design and a new board.
 
 ## Decision
 

@@ -4,7 +4,7 @@ Flutter app for configuring Fluxpoint after assembly, without rebuilding firmwar
 
 ## Status
 
-Phase 3. No Flutter code yet. ZMK Studio is the interim keymap editor.
+Phase 4. No Flutter code yet. ZMK Studio is the interim keymap editor.
 
 ## Targets
 

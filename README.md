@@ -12,15 +12,15 @@ Fluxpoint is a low-profile split keyboard based on the Corne 3x6+3 layout. It co
 | Switches | Kailh Choc V1, hot-swap, 1N4148W SOD-123 diodes |
 | Controller | Tenstar/SuperMini nice!nano v2 clone, socketed |
 | Firmware | ZMK + modules; ZMK Studio enabled for runtime keymap editing |
-| Connectivity | BLE split + USB to host; no wired split in v1 |
+| Connectivity | BLE split + USB/BLE HID to host; no wired split in v1 |
 | Pointing | Salvaged Dell TrackPoint, PS/2, right thumb cluster |
 | Display | 0.91" 128x32 SSD1306 OLED now; nice!view footprint in the final PCB |
 | Power | 502030 250 mAh LiPo per half, USB-C charging, slide switch |
 | Mechanical | 3D-printed case, FR4 switch plate, 4x N52 magnets + steel plate + 1/4"-20 ball head |
 | Keycaps | MBK blank, Choc V1 |
 | Target height | 15–16 mm with keycaps |
-| Target autonomy | 2–4 weeks with OLED off |
-| Configurator | Flutter app, Phase 3, monorepo at `software/configurator` |
+| Target autonomy | 2–4 weeks with OLED off and the documented TrackPoint power policy |
+| Configurator | Flutter app, Phase 4, monorepo at `software/configurator` |
 | Licenses | Hardware CERN-OHL-S-2.0, firmware MIT, docs CC BY 4.0 |
 
 ## Documentation
@@ -45,7 +45,7 @@ Start with the [documentation index](docs/README.md).
 ├── docs/                  # requirements, architecture, roadmap, ADRs, BOM, bring-up
 ├── hardware/              # PCB, case, diagrams, TrackPoint notes
 ├── firmware/              # ZMK config, custom modules, dongle
-├── software/              # Flutter configurator (Phase 3)
+├── software/              # Flutter configurator (Phase 4)
 ├── tools/                 # automation CLI and tests
 ├── .github/workflows/     # CI and baseline firmware build
 └── .opencode/skills/      # project-specific agent skills

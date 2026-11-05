@@ -53,16 +53,16 @@ This roadmap is milestone-based. A phase is complete only when its exit criteria
 - TrackPoint breakout PCB: 4-pin FPC 0.5 mm top/bottom footprints, header, pull-ups, reset/MOSFET options.
 - TrackPoint test: continuity, 3.3 V current, logic capture, PS/2 driver, reset strategy.
 - OLED test: I2C address, display widgets, blank behavior.
-- Power/BLE measurements: battery, charging, deep sleep, range, antenna keepout.
+- Power/BLE measurements: 3.3 V rail voltage/ripple, battery, charging, deep sleep, TrackPoint idle/active current, range, antenna keepout.
 - Decision on known-module fallback if the Dell module cannot be used.
 
 **Exit criteria**
 
-- All 42 matrix positions register on the breadboard.
+- All 21 populated matrix positions per half register on the breadboard (42 total across both halves).
 - OLED initializes and blanks correctly.
 - TrackPoint responds to movement and clicks, or the fallback module is ordered.
 - BLE split works between two nice!nano boards at ≥5 m.
-- Battery current and deep-sleep current are measured and consistent with the autonomy target.
+- 3.3 V rail is within 3.3 V ±5% and ≤100 mVpp; battery current, TrackPoint idle/active current, and deep-sleep current are measured and consistent with the autonomy target.
 - The final pin map and TrackPoint wiring are agreed.
 
 **Risks**
@@ -168,7 +168,7 @@ This roadmap is milestone-based. A phase is complete only when its exit criteria
 | Magnet hold/flatness | Pull-force test, steel-plate recess, feet |
 | ZMK Studio limitations | Document limits; custom RPC for advanced settings |
 | Supply/import delays | Order long-lead parts in Phase 0/1; local alternatives |
-| Budget | Track BOM; hand assembly; borrow 3D printer |
+| Budget | Track BOM; hand assembly; borrow 3D printer; trim tools/optional items if the upper estimate exceeds R$ 1,500 |
 | Documentation drift | ADRs + link/config checks in CI |
 
 ## Decision gates

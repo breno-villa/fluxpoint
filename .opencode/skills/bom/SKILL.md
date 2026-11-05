@@ -18,7 +18,7 @@ Missing: MBK blank keycaps, 2x 502030 250 mAh protected LiPo, 2 PCBs, 2 FR4 plat
 - JLCPCB: PCBs, FR4 plates, breakout.
 - AliExpress: keycaps, batteries, magnets, FPC connectors, logic analyzer.
 - Local: screws, wire, filament, ball heads/clamps, steel plates.
-- Budget: R$ 500–1,500; current estimate R$ 700–1,400.
+- Budget: R$ 500–1,500 target; keyboard parts estimate R$ 770–1,500, tools add R$ 100–200, so the total can exceed the target before shipping.
 
 ## Rules
 

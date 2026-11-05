@@ -6,7 +6,7 @@
 
 ## Context
 
-ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is experimental and needs two UART wires plus protection. The TrackPoint is on the right half, and ZMK pointing devices must be connected to the central side. The default Corne central is the left half.
+ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is experimental and needs two UART wires plus protection. The TrackPoint is on the right half. The default Corne central is the left half. With the pinned ZMK/fork revision, v1 keeps pointing devices on the central side; ZMK input split can forward a peripheral pointing device in newer releases, but v1 does not rely on it.
 
 ## Decision
 
@@ -19,7 +19,7 @@ ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is exper
 
 ## Consequences
 
-- The TrackPoint works without routing its signals across the split link.
+- The TrackPoint works without relying on input-split forwarding across the BLE link.
 - The right half must be the one connected to the host for USB; this is a usability change from the usual left-central Corne.
 - The left half still needs a controller, battery, and charging port.
-- A future dongle can become the central, but the TrackPoint would then need to be on the dongle or the split role/driver behavior must change; this is a Phase 5 design issue.
+- A future dongle can become the central. The TrackPoint can stay on the right half only if the pinned ZMK/fork supports input split; otherwise it must move to the dongle or the split role/driver behavior must change. This is a Phase 5 design issue.

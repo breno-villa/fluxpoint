@@ -58,7 +58,7 @@ Double-tap reset; copy `settings_reset` first if settings are stale.
 - Use `kb_zmk_ps2_mouse_trackpoint_driver` or equivalent.
 - It currently depends on a ZMK fork with mouse support; pin a tested revision.
 - Prefer UART driver on nRF52; GPIO is fallback.
-- ZMK pointing devices must be on the central side; the right half is central.
+- v1 keeps the TrackPoint on the central side (right half); newer ZMK input split can forward peripheral pointing devices, but v1 does not rely on it.
 - Test reset via `0xFF`, RC, and MOSFET power-cycle.
 
 ## Rules

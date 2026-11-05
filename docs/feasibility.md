@@ -17,9 +17,10 @@ This document separates what is already proven from what still needs a prototype
 | TrackPoint PS/2 | Medium | ZMK PS/2 module exists; module is 4-wire and low-profile | Protocol/reset/contact side unknown | Logic analyzer + breakout |
 | Low profile 15–16 mm | Medium | Commercial Choc Corne ~15 mm; socketed MCU below keycaps | Battery pocket, case tolerances | Stack-up coupon and case v0.1 |
 | 502030 battery + charging | High | nice!nano onboard charger; protected cell | Antenna keepout and case depth | Power/BLE measurement |
+| Power budget / TrackPoint idle current | Medium | 250 mAh; ≥2 week target implies ~0.75 mA average | TrackPoint current unknown | Measure TrackPoint and sleep current in Phase 1 |
 | Magnetic mount | High | 4x N52 + steel plate + camera ball head is a known pattern | Pull force, rotation, flat desk seating | Pull-force and mount prototype |
 | ZMK Studio keymap | High | Official feature; Corne has a physical layout | Advanced features are partial | Baseline Studio build |
-| Flutter configurator | Medium | ZMK Studio protocol is documented; Flutter supports BLE/serial | Protocol changes, custom RPC, DFU | Phase 3 MVP |
+| Flutter configurator | Medium | ZMK Studio protocol is documented; Flutter supports BLE/serial | Protocol changes, custom RPC, DFU | Phase 4 MVP |
 | Dongle | Medium | ZMK dongle support is documented | Extra build/board; latency | Phase 5 |
 | Fingerprint | Medium | HLK-ZW0905 is UART, 3.3 V, 50 templates | Power peaks, privacy, no ready ZMK support | Phase 5 prototype |
 | FIDO2/CTAP2 | Low–Medium | OpenSK runs on nRF52840; no fingerprint UV out of the box | Secure element, certification, architecture | Research ADR |

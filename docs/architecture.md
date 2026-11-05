@@ -44,7 +44,7 @@ flowchart LR
     REXP -.-> RMCU
 ```
 
-The **right half is the central** because it carries the TrackPoint, which ZMK requires on the central side. The left half is the peripheral. The right half's USB-C port is the host/data port; the left half's USB-C port is for charging and flashing. The left half does not need an OLED in v1; the right half's display is sufficient. A future dongle can become the central, but the TrackPoint would then need to move to the dongle or the split role/driver behavior must change; that is a Phase 5 design issue.
+The **right half is the central** because it carries the TrackPoint. With the pinned ZMK/fork revision, v1 keeps the pointing device on the central side; this avoids input-split forwarding and keeps the host USB port on the same half. ZMK has input-split support for pointing devices on peripherals, but v1 does not depend on it. The left half is the peripheral. The right half's USB-C port is the host/data port; the left half's USB-C port is for charging and flashing. The left half does not need an OLED in v1; the right half's display is sufficient. A future dongle can become the central; the TrackPoint could stay on the right half only if the pinned ZMK/fork supports input split, otherwise it must move or the split role/driver behavior must change. That is a Phase 5 design issue.
 
 ## 3. Connection modes
 
@@ -56,7 +56,7 @@ The **right half is the central** because it carries the TrackPoint, which ZMK r
 | 4 | BLE split | USB dongle | Dongle | No, Phase 5 |
 | 5 | Wired UART | USB/BLE | Wired central | No, experimental |
 
-ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is experimental and requires two UART wires with protection; it is not part of v1. A dongle is a ZMK central with no physical keys; it is a Phase 5 option and does not change the v1 hardware.
+ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is experimental and requires two UART wires with protection; it is not part of v1. A dongle is a ZMK central with no physical keys; it is a Phase 5 option and does not change the v1 hardware. If the TrackPoint stays on the right half, the dongle configuration depends on ZMK input-split support; otherwise the TrackPoint role must change.
 
 ## 4. Subsystems
 
@@ -64,7 +64,7 @@ ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is exper
 
 - 42 keys total, 21 per half.
 - Per half: 3 rows x 6 columns = 18 matrix keys, plus 3 thumb keys on a fourth row.
-- Matrix: 4 rows x 6 columns per half; `diode-direction = "col2row"`.
+- Matrix: 4 rows x 6 columns per half with 21 populated positions; `diode-direction = "col2row"`.
 - Diodes: 1N4148W in SOD-123. Through-hole 1N4148 is used only on the breadboard.
 - Switches: Kailh Choc V1; hot-swap sockets.
 - Key spacing: Choc 18 x 17 mm.
@@ -74,7 +74,7 @@ ZMK supports BLE split and USB/BLE host output. Full-duplex wired split is exper
 
 - Tenstar/SuperMini nice!nano v2 clone, nRF52840, Pro Micro footprint.
 - Socketed with 2.54 mm headers for serviceability.
-- 3.2 mm board thickness, mid-mount USB-C, onboard LiPo charger, 3.3 V LDO.
+- 3.2 mm board thickness, mid-mount USB-C, onboard LiPo charger, 3.3 V regulator.
 - UF2 bootloader; flashing by copying a `.uf2` file.
 - The clone's exact pinout, charger behavior, and current limits must be measured in Phase 1 before the schematic is frozen.
 
@@ -85,19 +85,19 @@ flowchart LR
     USB["USB-C 5 V"] --> CHG["nice!nano charger"]
     BAT["502030 LiPo<br/>250 mAh, protected"] --> SW["On/off switch"]
     SW --> CHG
-    CHG --> LDO["3.3 V LDO"]
+    CHG --> LDO["3.3 V regulator"]
     LDO --> MCU["nRF52840"]
     LDO --> OLED["OLED"]
     LDO --> TP["TrackPoint"]
     LDO --> EXP["Future fingerprint<br/>load switch"]
-    BAT --> ADC["Battery ADC"]
-    ADC --> MCU
+    SW -.->|battery ADC (internal VDDH, verify clone)| MCU
 ```
 
 - One protected 502030 250 mAh cell per half.
-- Each half has its own USB-C port, charger, and power switch.
-- Battery voltage is measured by an ADC pin; battery percentage is reported by ZMK.
+- Each half has its own USB-C port, charger, and power switch. The switch is in series with the cell, so it disconnects the battery from the charger and load when off; USB can still power the board. This is the working assumption; the exact charger/switch topology is confirmed in Phase 2.
+- Battery voltage is measured by the controller's battery ADC (internal VDDH measurement on the nice!nano v2; the clone may use P0.04/P0.24 or a divider, so verify in Phase 1). Battery percentage is reported by ZMK.
 - Deep sleep is enabled; the OLED is off by default; the TrackPoint stays powered only while the half is on.
+- The 250 mAh cell and the ≥2 week target imply an average current of ≈0.75 mA. That leaves little headroom for a continuously powered TrackPoint, so its idle/active current is measured in Phase 1 and a load switch or power policy is required if it exceeds the budget.
 - The future fingerprint header has a load switch so the 200 mA peak current can be disconnected when idle.
 - No VBUS is shared between halves in v1, so there is no backfeed path between them.
 - The battery pocket sits under the controller; the antenna end of the controller needs a keepout. The exact battery offset is a Phase 2 mechanical decision.
@@ -108,8 +108,9 @@ flowchart LR
 - 4-wire flex, 4-pin 0.5 mm FPC tail, black cap.
 - Likely PS/2: VCC, GND, CLK, DATA. Protocol and reset behavior are confirmed in Phase 1.
 - Mounted in the right thumb cluster; the cap is operated by the thumb.
-- Mouse buttons are keyboard thumb keys; scroll is a held thumb layer.
+- Mouse buttons are right thumb keys, either dedicated or on a pointing layer; scroll is a held thumb layer. The final keymap resolves how the three thumb keys share base-layer keys, clicks, and scroll; this is an open layout question.
 - Pull-ups on CLK/DATA; optional RC reset or controlled VCC power-cycle.
+- TrackPoint idle current is part of the power budget; a load switch or duty-cycle policy is available if the 3.3 V rail cannot stay powered continuously.
 - The ZMK PS/2 driver requires a ZMK fork with mouse support; the tested revision is pinned in `firmware/zmk-config/config/west.yml` when the TrackPoint module is integrated.
 - See [TrackPoint](trackpoint.md) for measurements, connector, and test plan.
 
@@ -117,8 +118,8 @@ flowchart LR
 
 - v1: 0.91" 128x32 SSD1306 OLED on the right half, I2C, address 0x3C.
 - Off by default; a key combination wakes it for 10 seconds.
-- Status content: battery, output (USB/BLE), active layer, security state, and connection.
-- Final PCB includes a nice!view-compatible footprint or adapter path. nice!view uses 3-wire SPI; the OLED uses I2C. The PCB must not require both to be populated.
+- Status content: battery, output (USB/BLE), active layer, and connection; security state is added only if a future security feature exists.
+- Final PCB includes a nice!view-compatible footprint or adapter path. The OLED (I2C) and nice!view (3-wire SPI) share a 3-GPIO display header; the OLED uses two pins and the nice!view uses all three. The PCB must not require both to be populated.
 - The display is low priority for battery life; if the OLED sleep current is too high, a load switch footprint is reserved.
 
 ### 4.6 Magnetic mounting
@@ -143,7 +144,7 @@ flowchart LR
 | Controller | ~3.2 mm + socket | At top edge, outside keycap area |
 | Target total | 15–16 mm | At keycap top; local controller area must stay below |
 
-The controller is placed at the top edge of each half, outside the keycap field. The socket height does not have to dictate the overall height; the battery pocket and case bottom do. A 502030 cell is 5 mm thick; a local pocket under the controller keeps the key area at 15–16 mm while the top edge remains below the keycaps.
+The controller is placed at the top edge of each half, outside the keycap field. The socket height does not have to dictate the overall height; the battery pocket and case bottom do. A 502030 cell is 5 mm thick; a local pocket under the controller keeps the key area at 15–16 mm while the top edge remains below the keycaps. The table is a component stack, not a simple sum: the hot-swap socket and controller sit in pockets, so the key-area height is measured from the desk to the keycap top on a printed stack-up coupon.
 
 ### 4.8 Firmware
 
@@ -156,11 +157,11 @@ flowchart LR
     ZMK --> SPLIT["BLE split"]
     ZMK --> DISP["Display widgets"]
     ZMK --> STUDIO["ZMK Studio RPC"]
-    STUDIO --> APP["Flutter configurator<br/>Phase 3"]
+    STUDIO --> APP["Flutter configurator<br/>Phase 4"]
 ```
 
 - Base: ZMK/Zephyr.
-- Split: BLE central (right, with TrackPoint) + peripheral (left).
+- Split: BLE central (right, with TrackPoint) + peripheral (left). v1 does not rely on input-split forwarding from the peripheral.
 - Host: USB HID and BLE HID, multi-host; the right half is the host-facing half.
 - TrackPoint: PS/2 driver module; UART-based driver preferred on nRF52; GPIO driver fallback.
 - Display: ZMK display widgets; custom 10-second wake behavior.
@@ -170,7 +171,7 @@ flowchart LR
 
 ### 4.9 Configurator app
 
-- Flutter, Phase 3, monorepo at `software/configurator`.
+- Flutter, Phase 4, monorepo at `software/configurator`.
 - Targets: Android, Linux, Windows, macOS.
 - Transport: ZMK Studio serial (USB CDC) and BLE GATT.
 - MVP: keymap/layers, keycodes/behaviors, import/export, local profiles.
@@ -189,7 +190,7 @@ The v1 right PCB reserves a 4-pin UART header and load switch for the fingerprin
 
 ## 5. Preliminary pin budget
 
-The exact pin map is closed in Phase 2. The table is a feasibility check, not a final assignment.
+The exact pin map is frozen at the end of Phase 1 (pin-map gate) and used for the Phase 2 schematic. The table is a feasibility check, not a final assignment.
 
 | Function | Pins | v1 populated | Future |
 |---|---:|---|---|
@@ -197,14 +198,13 @@ The exact pin map is closed in Phase 2. The table is a feasibility check, not a 
 | Matrix columns | 6 | Yes | — |
 | TrackPoint CLK/DATA | 2 | Yes | — |
 | TrackPoint reset | 1 | Optional | RC or MOSFET alternative |
-| OLED I2C | 2 | Yes | Shared display header |
-| Battery ADC | 1 | Yes | — |
+| Display header (I2C OLED or SPI nice!view) | 3 | Yes | Shared; OLED uses 2 GPIOs, nice!view uses 3 |
+| Battery ADC | 0–1 | Yes | Internal VDDH on nice!nano v2; reserve 1 if the clone uses a divider |
 | Fingerprint UART | 2 | No | Header, unpopulated |
 | Fingerprint load switch | 1 | No | Header, unpopulated |
-| nice!view SPI + CS | 4 | No | Alternative display footprint |
 | Spare/test points | 1–2 | — | Bring-up |
 
-The nice!nano exposes 21 GPIO. The populated v1 budget is about 15–16 pins including an optional TrackPoint reset. The future fingerprint header brings it to ~18–19. The display alternatives are mutually exclusive, so the final board can route both footprints without exceeding the budget. High-frequency pins are preferred for the TrackPoint UART to avoid BLE interference.
+The nice!nano exposes 21 GPIO. The populated v1 budget is 15–16 pins including the shared display header and an optional TrackPoint reset. The future fingerprint header adds 3 pins, for 18–19; if the clone needs a battery ADC pin, add 1 more (19–20), leaving 1–2 spare GPIO. Confirm that the shared display pins support both I2C and SPI at the pin-map gate. High-frequency pins are preferred for the TrackPoint UART to avoid BLE interference.
 
 ## 6. Decision records
 
@@ -224,11 +224,14 @@ The nice!nano exposes 21 GPIO. The populated v1 budget is about 15–16 pins inc
 ## 7. Open issues
 
 - TrackPoint protocol/reset and contact side.
-- Battery placement vs antenna keepout.
+- TrackPoint idle/active current and power policy.
+- Right thumb cluster bindings: base keys vs mouse clicks vs scroll.
+- Battery placement vs antenna keepout; battery ADC behavior on the clone.
+- Charger/switch topology and off-state current.
 - Magnet size and pull force; flat desk seating.
 - Exact pin map and high-frequency pin availability.
-- TrackPoint driver fork revision.
+- TrackPoint driver fork revision; input-split support if a dongle is added.
 - ZMK Studio physical layout for the custom shield.
-- nice!view footprint/adaptor routing.
+- nice!view footprint/adapter routing.
 - Case tolerances and 3D-printer material.
 - Future fingerprint/FIDO2 architecture.

@@ -26,8 +26,9 @@ Left half                                   Right half
 
 - Key spacing: Choc 18 x 17 mm.
 - Thumb cluster: three keys per side; the right cluster also hosts the TrackPoint below/next to the keys.
-- The TrackPoint cap is operated by the right thumb; the three thumb keys provide left/right/middle click.
+- The TrackPoint cap is operated by the right thumb; the right thumb keys provide left/right/middle click, either as dedicated keys or on a pointing layer.
 - One thumb key (for example, the middle right thumb) enables the scroll layer while held.
+- The baseline Corne keymap keeps Enter/Raise/Alt on the right thumb keys. The final Fluxpoint keymap must resolve how those base-layer functions coexist with clicks and scroll; this is an open layout question.
 
 ## 2. Base layer (QWERTY)
 
@@ -69,10 +70,10 @@ Suggested bindings:
 ## 6. Pointing device bindings
 
 - TrackPoint movement: handled by the ZMK PS/2 input listener.
-- Left/right/middle click: thumb keys on the right half.
+- Left/right/middle click: right thumb keys, either dedicated or on a pointing layer.
 - Scroll: hold the scroll thumb key; vertical TrackPoint movement becomes wheel movement.
 - Sensitivity/axis settings: key behaviors or custom Studio RPC in the final firmware.
-- The TrackPoint is on the right half, and the **right half is the central** in the final firmware. The left half is the peripheral. This is required because ZMK pointing devices must be connected to the central side.
+- The TrackPoint is on the right half, and the **right half is the central** in the final firmware. The left half is the peripheral. v1 keeps the pointing device on the central side to avoid input-split forwarding; newer ZMK releases can forward a peripheral pointing device, but v1 does not rely on it.
 - The right half's USB-C port is the host/data port; the left half's USB-C port is for charging and flashing.
 - The baseline Corne firmware is left-central only because it uses the stock shield; the custom Fluxpoint shield will switch the central role to the right half.
 
@@ -87,6 +88,7 @@ Suggested bindings:
 
 - Exact thumb cluster angle and spacing.
 - TrackPoint position vs thumb key travel.
+- How the three right thumb keys provide base-layer keys, mouse clicks, and scroll.
 - Scroll key choice.
 - Whether to use a combo for the adjust layer.
 - Keycap legends (MBK blank assumed).

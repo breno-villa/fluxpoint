@@ -33,7 +33,7 @@
 3. Test every key with a key tester.
 4. Check for ghosting by pressing combinations of three keys in the same row/column.
 
-**Pass:** all 24 positions register; no ghosting; no stuck keys.
+**Pass:** all 21 populated positions register; the three unused matrix positions are documented; no ghosting; no stuck keys.
 
 ### 2.3 OLED
 
@@ -65,13 +65,14 @@
 
 ### 2.5 Power and BLE
 
-1. Measure active current with OLED on/off and TrackPoint idle/moving.
-2. Measure deep-sleep current after the configured timeout.
-3. Measure BLE range with the battery and magnets in the intended positions.
-4. Test USB HID and BLE HID on at least two hosts.
-5. Verify charging from USB-C and battery level reporting.
+1. Measure the 3.3 V rail voltage and ripple with the OLED and TrackPoint active; target 3.3 V ±5% and ≤100 mVpp.
+2. Measure active current with OLED on/off and TrackPoint idle/moving.
+3. Measure deep-sleep current after the configured timeout.
+4. Measure BLE range with the battery and magnets in the intended positions.
+5. Test USB HID and BLE HID on at least two hosts.
+6. Verify charging from USB-C and battery level reporting.
 
-**Pass:** current is consistent with ≥2 weeks autonomy; range ≥5 m; charging terminates correctly.
+**Pass:** 3.3 V rail is within 3.3 V ±5% and ≤100 mVpp; current is consistent with ≥2 weeks autonomy; range ≥5 m; charging terminates correctly.
 
 ## 3. Phase 2 — PCB and case bring-up
 
@@ -93,7 +94,7 @@
 
 - Verify TrackPoint movement, clicks, scroll, and reset.
 - Verify OLED wake/blank timing (10 s ± 2 s).
-- Verify the nice!view footprint/adaptor if populated.
+- Verify the nice!view footprint/adapter if populated.
 
 ### 3.4 Mechanical
 
@@ -135,7 +136,8 @@ Copy this checklist into the release notes and record measured values.
 - [ ] Wake combo turns display on for 10 s ± 2 s.
 - [ ] Battery level within ±10%.
 - [ ] USB-C charging works on both halves.
-- [ ] Deep-sleep current recorded.
+- [ ] 3.3 V rail voltage/ripple recorded and within 3.3 V ±5% / ≤100 mVpp.
+- [ ] Deep-sleep current and TrackPoint idle/active current recorded.
 
 ### Connectivity
 

@@ -74,7 +74,7 @@ Populate the one that mates with the flex. The breakout also includes:
 - Prefer the UART-based PS/2 driver on nRF52; the GPIO driver is a fallback.
 - Use high-frequency pins for the UART if possible to avoid BLE interference.
 - Configure sensitivity, axis inversion, and scroll behavior.
-- Mouse buttons are keyboard thumb keys; scroll is a held thumb layer.
+- Mouse buttons are right thumb keys, either dedicated or on a pointing layer; scroll is a held thumb layer.
 - Test press-to-select only if the module supports it; it is optional.
 
 ## 6. Test plan

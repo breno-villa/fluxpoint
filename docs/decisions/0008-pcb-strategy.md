@@ -15,7 +15,7 @@ The Corne 3x6+3 matrix and nice!nano footprint are proven. The project needs a T
 - Right PCB carries the TrackPoint connector, OLED, and future fingerprint header/load switch.
 - Left PCB is simpler; it still has the matrix, controller, battery, and power switch.
 - Mixed connectors: JST-PH for battery, FPC/FFC or solder pads for OLED/TrackPoint, 2.54 mm socket for the controller.
-- Hand assembly; no fine-pitch assembly required.
+- Hand assembly; the only fine-pitch parts are the optional FPC connectors, which can be pre-assembled, ordered assembled, or replaced by solder pads/headers.
 - Preserve Corne attribution and license notices.
 
 ## Consequences

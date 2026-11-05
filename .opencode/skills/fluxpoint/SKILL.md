@@ -22,7 +22,7 @@ Phase 0: documentation, ADRs, automation, CI, skills, and a baseline Corne ZMK c
 - 502030 250 mAh per half; 15–16 mm target.
 - 3D-printed case + FR4 plate; MBK blank keycaps.
 - 4x N52 magnets + 1 mm steel plate + 1/4"-20 ball head.
-- Flutter configurator is Phase 3, not v1.
+- Flutter configurator is Phase 4, not v1.
 - FIDO2/fingerprint deferred; expansion header reserved.
 
 ## Repository map
