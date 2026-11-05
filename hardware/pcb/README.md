@@ -14,8 +14,7 @@ Planned Phase 2 deliverables: two mirrored KiCad boards for the left and right h
 ## Left half
 
 - Same matrix/controller/power blocks.
-- No TrackPoint or fingerprint header.
-- Optional OLED footprint for symmetry; not populated in v1.
+- No TrackPoint, fingerprint header, or display in v1.
 
 ## Stack and fabrication
 

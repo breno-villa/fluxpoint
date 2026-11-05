@@ -23,7 +23,6 @@ flowchart LR
         LMAT["4x6 matrix<br/>21 keys"]
         LBAT["502030 LiPo<br/>250 mAh"]
         LSW["Power switch"]
-        LOLED["OLED<br/>(optional)"]
     end
     subgraph R["Right half"]
         RMCU["nice!nano clone<br/>nRF52840"]
@@ -40,13 +39,12 @@ flowchart LR
     RMAT --> RMCU
     LBAT --> LSW --> LMCU
     RBAT --> RSW --> RMCU
-    LOLED -.-> LMCU
     ROLED -.-> RMCU
     RTP -.-> RMCU
     REXP -.-> RMCU
 ```
 
-The **right half is the central** because it carries the TrackPoint, which ZMK requires on the central side. The left half is the peripheral. The right half's USB-C port is the host/data port; the left half's USB-C port is for charging and flashing. The left half can also carry an OLED for symmetry, but that is optional and increases power draw. A future dongle can become the central, but the TrackPoint would then need to move to the dongle or the split role/driver behavior must change; that is a Phase 5 design issue.
+The **right half is the central** because it carries the TrackPoint, which ZMK requires on the central side. The left half is the peripheral. The right half's USB-C port is the host/data port; the left half's USB-C port is for charging and flashing. The left half does not need an OLED in v1; the right half's display is sufficient. A future dongle can become the central, but the TrackPoint would then need to move to the dongle or the split role/driver behavior must change; that is a Phase 5 design issue.
 
 ## 3. Connection modes
 
@@ -117,7 +115,7 @@ flowchart LR
 
 ### 4.5 Display
 
-- v1: 0.91" 128x32 SSD1306 OLED, I2C, address 0x3C.
+- v1: 0.91" 128x32 SSD1306 OLED on the right half, I2C, address 0x3C.
 - Off by default; a key combination wakes it for 10 seconds.
 - Status content: battery, output (USB/BLE), active layer, security state, and connection.
 - Final PCB includes a nice!view-compatible footprint or adapter path. nice!view uses 3-wire SPI; the OLED uses I2C. The PCB must not require both to be populated.

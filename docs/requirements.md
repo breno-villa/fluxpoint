@@ -83,7 +83,7 @@ Build a low-profile split keyboard that is comfortable on a desk, usable on a la
 
 | ID | Requirement |
 |---|---|
-| FR-DSP-01 | The v1 display **must** be a 0.91" 128x32 SSD1306 OLED over I2C. |
+| FR-DSP-01 | The v1 display **must** be a 0.91" 128x32 SSD1306 OLED over I2C, on the right half. |
 | FR-DSP-02 | The OLED **must** be off by default. |
 | FR-DSP-03 | A key combination **must** wake the OLED for 10 seconds, after which it turns off automatically. |
 | FR-DSP-04 | The display **should** show battery, connection/output, active layer, and security status. |
