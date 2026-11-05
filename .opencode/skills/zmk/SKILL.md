@@ -57,11 +57,13 @@ Double-tap reset; copy `settings_reset` first if settings are stale.
 
 ## TrackPoint
 
-- Use `kb_zmk_ps2_mouse_trackpoint_driver` or equivalent.
-- It currently depends on a ZMK fork with mouse support; pin a tested revision.
-- Prefer UART driver on nRF52; GPIO is fallback.
+- Use the `kb_zmk_ps2_mouse_trackpoint_driver` module's PS/2 UART driver and `zmk,input-mouse-ps2` input device.
+- ZMK v0.3.0 compatibility was verified offline: the lower-level PS/2 driver and `zmk,input-mouse-ps2` compile; the module's custom `zmk,input-listener-ps2` does not (it includes the removed `zmk/mouse/types.h`). Use ZMK's native `zmk,input-listener` instead.
+- The UART driver's recommended pins are D1 (SCL), D0 (SDA), and D9 (RST); this matches the pin-map candidate.
+- Pin the module revision `f6f3b30677caeccc4970bb48f48240d3504d03f7` when integrating it into `west.yml`.
 - v1 keeps the TrackPoint on the central side (right half); newer ZMK input split can forward peripheral pointing devices, but v1 does not rely on it.
 - Test reset via `0xFF`, RC, and MOSFET power-cycle.
+- Hardware protocol/reset validation is still required; the offline spike only proves compilation.
 
 ## Rules
 

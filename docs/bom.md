@@ -130,9 +130,11 @@ A bench supply or oscilloscope is not required for every Phase 1 test, but two m
 - USB-C cable data rating; charge-only cables are not sufficient for flashing.
 - Import taxes and lead times for JLCPCB/AliExpress.
 
-## 8. Phase 1 procurement batch (pending approval)
+## 8. Phase 1 procurement batch (approved)
 
-This is the first order list for Phase 1. It is a subset of §2/§3, not an additional build. **Do not purchase until the list is approved.** Prices are estimates; confirm supplier, minimum order quantity, and shipping before ordering.
+- **Status:** Approved by the user on 2026-11-05. **Order not placed yet; no parts have been purchased.**
+- This is the first order list for Phase 1. It is a subset of §2/§3, not an additional build. Prices are estimates; confirm supplier, minimum order quantity, and shipping before ordering.
+- The user places the order. Do not purchase automatically.
 
 | Priority | Item | Qty | Estimate (R$) | Supplier | Purpose |
 |---:|---|---:|---:|---|---|
@@ -153,6 +155,33 @@ This is the first order list for Phase 1. It is a subset of §2/§3, not an addi
 | Borrow | Bench power supply | 1 | 0–250 | Local/maker space | Current-limited first power-up; borrow first |
 | Borrow | Oscilloscope | 1 | 0–300+ | Local/maker space | Ripple measurement; borrow first |
 
+### 8.1 Recommended specifications
+
+- **Logic analyzer:** 8 channels, 24 MHz, USB; Cypress FX2 / `fx2lafw` or another `sigrok-cli`-supported device. Avoid analyzers that only work with proprietary Windows software.
+- **FPC breakout adapters:** 0.5 mm pitch, 4 pins, FPC/FFC to 2.54 mm header; one top-contact and one bottom-contact variant. These are for the bench; they are not the final PCB connector.
+- **FPC connectors:** 0.5 mm pitch, 4 pins, ZIF, SMD; top- and bottom-contact variants (Hirose FH12/FH19 or Molex 501951-class; confirm the exact suffix before ordering). Fine-pitch hand soldering is the main risk; consider ordering the breakout PCB pre-assembled.
+- **Battery:** 502030 (5.0 x 20 x 30 mm), 3.7 V LiPo, 250 mAh nominal, protected PCM, JST-PH 2.0 connector, wires long enough for the case. Verify polarity with a multimeter before connecting.
+- **Magnets:** N52, 8x2 mm or 10x2 mm, axial magnetization, 8 pieces. Final size after the pull-force test.
+- **MOSFET/load switch:** AO3401A P-channel SOT-23 for a simple high-side power cycle, or a 3.3 V load switch with controlled rise time. Pick one and document the choice.
+- **Passives:** 4.7 kΩ and 100 kΩ 1% resistors; 2.2 µF and 1–10 µF X7R capacitors.
+- **Breakout PCB:** 2 layers, 1.6 mm, HASL, 5 pieces; small board, can share a JLCPCB panel.
+- **USB-C cables:** USB 2.0 data-capable, not charge-only.
+
+### 8.2 Order checklist
+
+- [x] Batch approved by the user (2026-11-05).
+- [ ] Supplier links, MOQ, and shipping confirmed.
+- [ ] Priority 1 order placed.
+- [ ] Priority 2 order placed.
+- [ ] Tracking numbers recorded.
+- [ ] Parts received and inspected.
+- [ ] Actual prices recorded in §2.
+- [ ] Owned inventory updated in §1.
+
+### 8.3 Budget
+
 **Batch estimate:** R$ 250–480 for priorities 1–2, most of which is already in the §2 total. The adapter and probe items add about R$ 40–90 to the tools/bench estimate. Bench supply and oscilloscope are borrow-first.
 
-**Minimum viable order if the budget is tight:** logic analyzer, one top-contact and one bottom-contact FPC breakout adapter, two protected cells, USB-C cables, and the passives. The custom breakout PCB and magnets can follow after the first bench session, but they are on the Phase 1 critical path.
+### 8.4 Minimum viable order
+
+**If the budget is tight:** logic analyzer, one top-contact and one bottom-contact FPC breakout adapter, two protected cells, USB-C cables, and the passives. The custom breakout PCB and magnets can follow after the first bench session, but they are on the Phase 1 critical path.

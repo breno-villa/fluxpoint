@@ -14,7 +14,7 @@ This document separates what is already proven from what still needs a prototype
 | nice!nano clone + ZMK | High | ZMK v0.3.0 supports `nice_nano_v2`; clone community reports | Clone pinout/charger variation | Measure board in Phase 1 |
 | BLE split + USB HID | High | ZMK split and USB are mature | Multi-host/connection stability | Two-board BLE test |
 | OLED + 10 s blank | High | ZMK display widgets; SSD1306 supported | Sleep current and burn-in | Breadboard OLED test |
-| TrackPoint PS/2 | Medium | ZMK PS/2 module exists; module is 4-wire and low-profile | Protocol/reset/contact side unknown | Logic analyzer + breakout |
+| TrackPoint PS/2 | Medium | ZMK PS/2 module exists; module is 4-wire and low-profile; the input driver compiles against ZMK v0.3.0 with the native input listener | Protocol/reset/contact side unknown | Logic analyzer + breakout; validate hardware |
 | Low profile 15–16 mm | Medium | Commercial Choc Corne ~15 mm; socketed MCU below keycaps | Battery pocket, case tolerances | Stack-up coupon and case v0.1 |
 | 502030 battery + charging | High | nice!nano onboard charger; protected cell | Antenna keepout and case depth | Power/BLE measurement |
 | Power budget / TrackPoint idle current | Medium | 250 mAh; ≥2 week target implies ~0.75 mA average | TrackPoint current unknown | Measure TrackPoint and sleep current in Phase 1 |

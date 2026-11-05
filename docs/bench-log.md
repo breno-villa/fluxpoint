@@ -19,6 +19,16 @@ Record **measured values**, not just pass/fail. Every row needs a date, instrume
 | Bench shield revision | TBD (git commit) |
 | Notes | TBD |
 
+### Session plan
+
+| Session | Scope | Depends on |
+|---|---|---|
+| 1 | Clone inventory, matrix, OLED, BLE split, Studio | Owned parts only |
+| 2 | TrackPoint continuity, protocol, reset, driver | Logic analyzer + FPC adapters |
+| 3 | Battery, charging, battery ADC, deep sleep, autonomy | Protected 502030 cells |
+| 4 | BLE range with battery and magnets, antenna keepout | N52 magnets |
+| Gate | Freeze pin map, accept ADR 0013, Phase 2 go/no-go | Sessions 1–4 |
+
 ## 1. Controller inventory and clone characterization
 
 | Board | Markings / photos | 3.3 V (USB) | 3.3 V (battery) | UF2 mount | Settings reset | Baseline flash | Result |
@@ -147,6 +157,18 @@ Use the bench shield and a functional test for each pad. Record the method (matr
 | Clicks (left/right/middle) | Work | TBD | TBD |
 | Scroll layer | Works | TBD | TBD |
 | Reset repeated 5x | Works every time | TBD | TBD |
+
+### 4.4 Firmware spike (offline)
+
+| Test | Expected | Observed | Result |
+|---|---|---|---|
+| `kb_zmk_ps2_mouse_trackpoint_driver` PS/2 UART against ZMK v0.3.0 | Compiles | `CONFIG_PS2_UART=y`, `CONFIG_ZMK_INPUT_MOUSE_PS2=y` | PASS |
+| Module custom `zmk,input-listener-ps2` | Compiles | Fails on removed `zmk/mouse/types.h` | FAIL |
+| Native `zmk,input-listener` with `zmk,input-mouse-ps2` | Compiles | Build succeeds | PASS |
+| Pin candidates D1/D0/D9 | Match driver recommendation | D1 SCL, D0 SDA, D9 RST | PASS (docs, hardware pending) |
+| Hardware protocol/reset | Movement and repeatable init | TBD | TBD |
+
+Pin the module revision `f6f3b30677caeccc4970bb48f48240d3504d03f7` when integrating. See [TrackPoint §5.1](trackpoint.md#51-zmk-v030-compatibility-spike-offline).
 
 ## 5. Power and autonomy
 

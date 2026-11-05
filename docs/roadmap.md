@@ -59,6 +59,7 @@ This roadmap is milestone-based. A phase is complete only when its exit criteria
 - Breadboard matrix with 4x6 wiring and the bench shield.
 - TrackPoint breakout PCB: 4-pin FPC 0.5 mm top/bottom footprints, header, pull-ups, reset/MOSFET options.
 - TrackPoint test: continuity, 3.3 V current, logic capture, PS/2 driver, reset strategy.
+- TrackPoint driver spike: the PS/2 UART and `zmk,input-mouse-ps2` compile against ZMK v0.3.0 with the native `zmk,input-listener`; the module's custom listener is incompatible. Hardware validation still pending.
 - OLED test: I2C address, display widgets, blank behavior.
 - Power/BLE measurements: 3.3 V rail voltage/ripple, battery, charging, deep sleep, TrackPoint idle/active current, range, antenna keepout.
 - Decision on known-module fallback if the Dell module cannot be used.

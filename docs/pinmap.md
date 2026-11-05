@@ -21,6 +21,8 @@ The Tenstar/SuperMini clone may not expose the same set of pads or may route the
 
 `Pad` is the Pro Micro header name. `nRF` is the documented nice!nano v2 mapping; it is not a direct measurement of the clone.
 
+**Driver confirmation (2026-11-05):** the `kb_zmk_ps2_mouse_trackpoint_driver` UART driver recommends D1/D0 for high-frequency SCL/SDA and D9 for RST. This supports the candidate assignment below. The module's PS/2 input driver compiles against ZMK v0.3.0 when used with ZMK's native `zmk,input-listener`; its custom listener is not compatible. See [TrackPoint §5.1](trackpoint.md#51-zmk-v030-compatibility-spike-offline).
+
 | Pad | nRF52840 | Candidate function | Status | Notes |
 |---|---|---|---|---|
 | D0 | P0.08 | TrackPoint UART RX / CLK | Candidate | UART0 default RX; high-frequency capable |

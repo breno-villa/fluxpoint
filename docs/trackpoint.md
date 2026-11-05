@@ -74,12 +74,38 @@ Use a 4-pin 0.5 mm FPC breakout adapter (top and bottom contact variants) as the
 ## 5. Firmware
 
 - Use the ZMK PS/2 driver module (`kb_zmk_ps2_mouse_trackpoint_driver`) or an equivalent implementation.
-- The driver currently depends on a ZMK fork with mouse support; pin a tested revision in `west.yml`.
 - Prefer the UART-based PS/2 driver on nRF52; the GPIO driver is a fallback.
 - Use high-frequency pins for the UART if possible to avoid BLE interference.
 - Configure sensitivity, axis inversion, and scroll behavior.
 - Mouse buttons are right thumb keys, either dedicated or on a pointing layer; scroll is a held thumb layer.
 - Test press-to-select only if the module supports it; it is optional.
+
+### 5.1 ZMK v0.3.0 compatibility spike (offline)
+
+ZMK v0.3.0 has official pointing support (`CONFIG_ZMK_POINTING`, `zmk,input-listener`, and input processors). The `kb_zmk_ps2_mouse_trackpoint_driver` module's lower-level PS/2 UART driver and its `zmk,input-mouse-ps2` input driver compile against v0.3.0. Its custom `zmk,input-listener-ps2` does **not**: it includes the removed `zmk/mouse/types.h`.
+
+Use the module's PS/2 input driver with ZMK's native `zmk,input-listener`, not the module's listener:
+
+```dts
+/ {
+    mouse_ps2: mouse_ps2 {
+        compatible = "zmk,input-mouse-ps2";
+        ps2-device = <&uart_ps2>;
+        rst-gpios = <&pro_micro 9 GPIO_ACTIVE_HIGH>;
+        status = "okay";
+    };
+
+    mouse_ps2_listener: mouse_ps2_listener {
+        compatible = "zmk,input-listener";
+        device = <&mouse_ps2>;
+        status = "okay";
+    };
+};
+```
+
+The PS/2 UART driver uses D1 (SCL), D0 (SDA), and D9 (RST); this matches the high-frequency pin recommendation and the pin-map candidate. Build the spike with `-DZMK_EXTRA_MODULES=<path-to-module>` and `-DCONFIG_ZMK_POINTING=y`. Pin the module revision `f6f3b30677caeccc4970bb48f48240d3504d03f7` when integrating it into `west.yml`.
+
+This proves compilation only. The hardware protocol, reset sequence, and movement still need the Phase 1 bench session. Re-check the module before integration; its custom listener may be fixed upstream later.
 
 ## 6. Test plan
 

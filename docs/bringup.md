@@ -17,6 +17,35 @@
 
 Record every measurement in [Bench log](bench-log.md). The Phase 1 firmware is the `fluxpoint_bench_left`/`fluxpoint_bench_right` shield in `firmware/zmk-config/config/boards/shields/fluxpoint_bench/`; it uses the candidate map in [Pin map](pinmap.md). Do not freeze a pin until the corresponding check passes.
 
+### 2.0 Session 1 — no new parts required
+
+This session uses only owned parts: four nice!nano clones, switches, sockets, diodes, the OLED, the breadboard, and the multimeter. Leave the TrackPoint, batteries, magnets, and RF tests for later sessions.
+
+1. Inventory all four clones: photos, markings, shorts, 3.3 V on USB, UF2 mount name. Record in bench-log §1.
+2. Build the bench image (see `firmware/zmk-config/README.md`):
+   ```bash
+   docker run --rm -v "$PWD:/workspace" -w /workspace/firmware/zmk-config \
+     zmkfirmware/zmk-build-arm:stable bash -lc '
+       west update
+       west build -s zmk/app -d build/bench-left -b nice_nano_v2 -- \
+         -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+         -DZMK_CONFIG=$PWD/config -DSHIELD=fluxpoint_bench_left
+       west build -s zmk/app -d build/bench-right -b nice_nano_v2 -- \
+         -DZephyr_DIR=$PWD/zephyr/share/zephyr-package/cmake \
+         -DZMK_CONFIG=$PWD/config -DSHIELD=fluxpoint_bench_right \
+         -DSNIPPET=studio-rpc-usb-uart
+     '
+   ```
+3. Flash `settings_reset` first on each controller, then the left/right bench image:
+   ```bash
+   python tools/fluxpoint_cli.py flash --uf2 firmware/zmk-config/build/bench-left/zephyr/zmk.uf2
+   python tools/fluxpoint_cli.py flash --uf2 firmware/zmk-config/build/bench-right/zephyr/zmk.uf2
+   ```
+4. Wire the left 4x6 matrix, test 21 keys, ghosting, and the transform; repeat on the right. Record the unused positions in bench-log §2.
+5. Connect the OLED to D2/D3 on the right half; scan I2C, confirm `0x3C`, and test display/blank. Record in bench-log §3.
+6. Pair both halves over BLE; test USB HID and BLE HID on two hosts; test ZMK Studio over USB and BLE. Record in bench-log §2.3.
+7. Do not declare the pin map frozen until the TrackPoint and power sessions are complete.
+
 ### 2.1 nice!nano clone
 
 1. Photograph both sides and record markings.
